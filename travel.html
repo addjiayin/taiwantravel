@@ -1,0 +1,1606 @@
+<!DOCTYPE html>>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="jia-yin">
+        <meta name="description" content="旅遊網站練習設置">
+        <link rel="shortcut icon" href="https://tse2.mm.bing.net/th?id=OIP.6dStjdpMbJ3OTwike0GKxwHaIj&pid=Api&P=0">
+        <title>Taiwan Travel</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();   
+            });
+            
+            let sum=0;
+            function like() {
+                sum=sum+1;
+                document.getElementById("likenumber").innerHTML=sum;
+            };
+            let sums=0;
+            function shopcart(){
+                let no = document.getElementById("nothing");
+                let add = document.getElementById("addcart");
+                let total = document.getElementById("totalcart");
+                let messages = document.getElementById("message");
+                let cashtotal = document.getElementById("cashtotal");
+                cashtotal.style.display="block";
+                no.style.display="none";
+                add.style.display="block";
+                total.style.display="block";
+                messages.style.display="block";
+            };
+            function cachestotal(){
+                alert("結帳成功");
+            };
+            function totalshopcart(){
+                let allprices =[];
+                let table1 = document.getElementById("table1");
+                let tablenumber = document.getElementsByTagName("td").length;
+                for (let i=5;i<tablenumber;i=i+4){
+                    let td = table1.getElementsByTagName("td")[i];
+                    let prices = Number(td.textContent);
+                    allprices.push(prices);
+                };
+                console.log(allprices);
+                let total=0
+                for(let j=0;j<allprices.length;j=j+1){
+                    total=total+allprices[j];
+                };
+            console.log(total);
+            document.querySelector(".td2").innerHTML=total;
+            };
+            let addaa=0;
+            function addtaipel(){
+                addaa=addaa+1;
+                if (addaa>=2){
+                    alert("重複加入");
+                    addaa=addaa-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="adda"><th id="th1">台北旅遊</th><td id="td1"><input id="inputnumbera" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">2500</td><td id="td1">2500</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("message").innerHTML=sums;
+                    document.getElementById("inputnumbera").addEventListener("click",input);
+                    function input(){
+                        let inputnumber = document.getElementById("inputnumbera").value;
+                        let adda = document.getElementById("adda");
+                        let td1 = adda.getElementsByTagName("td")[1];
+                        let price = Number(td1.textContent);           
+                        let td2 = adda.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addaa=addaa-1;
+                        sums=0;
+                        const adda = document.getElementById("adda")
+                        adda.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const adda = document.getElementById("adda")
+                        adda.remove();
+                        alert("刪除成功");
+                        sums=sums-1;
+                        addaa=addaa-1;
+                        console.log(addaa);
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addbb=0;
+            function addtaoyuan(){
+                addbb=addbb+1;
+                if (addbb>=2){
+                    alert("重複加入");
+                    addbb=addbb-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addb"><th id="th1">桃園旅遊</th><td id="td1"><input id="inputnumberb" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">3400</td><td id="td1">3400</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("message").innerHTML=sums;
+                    document.getElementById("inputnumberb").addEventListener("click",input);
+                    function input(){
+                        let inputnumber = document.getElementById("inputnumberb").value;
+                        let addb = document.getElementById("addb");
+                        let td1 = addb.getElementsByTagName("td")[1];
+                        let price = Number(td1.textContent);           
+                        let td2 = addb.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addbb=addbb-1;
+                        sums=0;
+                        const addb = document.getElementById("addb")
+                        addb.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const addb = document.getElementById("addb")
+                        addb.remove();
+                        alert("刪除成功");
+                        addbb=addbb-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addcc=0;
+            function addhsinchu(){
+                addcc=addcc+1;
+                if (addcc>=2){
+                    alert("重複加入");
+                    addcc=addcc-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addc"><th id="th1">新竹旅遊</th><td id="td1"><input id="inputnumberc" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">2500</td><td id="td1">2500</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("message").innerHTML=sums;
+                    document.getElementById("inputnumberc").addEventListener("click",input);
+                    function input(){
+                        let inputnumber = document.getElementById("inputnumberc").value;
+                        let addc = document.getElementById("addc");
+                        let td1 = addc.getElementsByTagName("td")[1];
+                        let price = Number(td1.textContent);           
+                        let td2 = addc.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addcc=addcc-1;
+                        sums=0;
+                        const addc = document.getElementById("addc")
+                        addc.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const addc = document.getElementById("addc")
+                        addc.remove();
+                        alert("刪除成功");
+                        addcc=addcc-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            
+            let adddd=0;
+            function addyilan(){
+                adddd=adddd+1;
+                if (adddd>=2){
+                    alert("重複加入");
+                    adddd=adddd-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addd"><th id="th1">宜蘭旅遊</th><td id="td1"><input id="inputnumberd" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">4000</td><td id="td1">4000</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("message").innerHTML=sums;
+                    document.getElementById("inputnumberd").addEventListener("click",input);
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumberd").value;
+                        const add = document.getElementById("addd");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        adddd=adddd-1;
+                        sums=0;
+                        const addd = document.getElementById("addd")
+                        addd.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("addd");
+                        add.remove();
+                        alert("刪除成功");
+                        adddd=adddd-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addee=0
+            function addmiaoli(){
+                addee=addee+1;
+                if (addee>=2){
+                    alert("重複加入");
+                    addee=addee-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="adde"><th id="th1">苗栗旅遊</th><td id="td1"><input id="inputnumbere" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">2900</td><td id="td1">2900</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("inputnumbere").addEventListener("click",input);
+                    document.getElementById("message").innerHTML=sums;
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumbere").value;
+                        const add = document.getElementById("adde");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addee=addee-1;
+                        sums=0;
+                        const adde = document.getElementById("adde")
+                        adde.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("adde");
+                        add.remove();
+                        alert("刪除成功");
+                        addee=addee-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addff=0;
+            function addtaichung(){
+                addff=addff+1;
+                if (addff>=2){
+                    alert("重複加入");
+                    addff=addff-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addf"><th id="th1">台中旅遊</th><td id="td1"><input id="inputnumberf" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">3300</td><td id="td1">3300</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("inputnumberf").addEventListener("click",input);
+                    document.getElementById("message").innerHTML=sums;
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumberf").value;
+                        const add = document.getElementById("addf");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addff=addff-1;
+                        sums=0;
+                        const addf = document.getElementById("addf")
+                        addf.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("addf");
+                        add.remove();
+                        alert("刪除成功");
+                        addff=addff-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        }
+                    };
+                };
+            };
+            let addgg=0;
+            function addchanghua(){
+                addgg=addgg+1;
+                if (addgg>=2){
+                    alert("重複加入");
+                    addgg=addgg-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addg"><th id="th1">彰化旅遊</th><td id="td1"><input id="inputnumberg" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">3500</td><td id="td1">3500</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("inputnumberg").addEventListener("click",input);
+                    document.getElementById("message").innerHTML=sums;
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumberg").value;
+                        const add = document.getElementById("addg");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addgg=addgg-1;
+                        sums=0;
+                        const addg = document.getElementById("addg")
+                        addg.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("addg");
+                        add.remove();
+                        alert("刪除成功");
+                        addgg=addgg-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addhh=0;
+            function addyunlin(){
+                addhh=addhh+1;
+                if (addhh>=2){
+                    alert("重複加入");
+                    addhh=addhh-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addh"><th id="th1">雲林旅遊</th><td id="td1"><input id="inputnumberh" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">3600</td><td id="td1">3600</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("inputnumberh").addEventListener("click",input);
+                    document.getElementById("message").innerHTML=sums;
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumberh").value;
+                        const add = document.getElementById("addh");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addhh=addhh-1;
+                        sums=0;
+                        const addh = document.getElementById("addh")
+                        addh.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("addh");
+                        add.remove();
+                        alert("刪除成功");
+                        addhh=addhh-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addii=0;
+            function addchiayi(){
+                addii=addii+1;
+                if (addii>=2){
+                    alert("重複加入");
+                    addii=addii-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addi"><th id="th1">嘉義旅遊</th><td id="td1"><input id="inputnumberi" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">5500</td><td id="td1">5500</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("inputnumberi").addEventListener("click",input);
+                    document.getElementById("message").innerHTML=sums;
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumberi").value;
+                        const add = document.getElementById("addi");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addii=addii-1;
+                        sums=0;
+                        const addi = document.getElementById("addi")
+                        addi.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("addi");
+                        add.remove();
+                        alert("刪除成功");
+                        addii=addii-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addjj=0;
+            function addtainan(){
+                addjj=addjj+1;
+                if (addjj>=2){
+                    alert("重複加入");
+                    addjj=addjj-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addj"><th id="th1">台南旅遊</th><td id="td1"><input id="inputnumberj" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">3700</td><td id="td1">3700</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("inputnumberj").addEventListener("click",input);
+                    document.getElementById("message").innerHTML=sums;
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumberj").value;
+                        const add = document.getElementById("addj");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addjj=addjj-1;
+                        sums=0;
+                        const addj = document.getElementById("addj")
+                        addj.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("addj");
+                        add.remove();
+                        alert("刪除成功");
+                        addjj=addjj-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addkk=0;
+            function addkaohsiung(){
+                addkk=addkk+1;
+                if (addkk>=2){
+                    alert("重複加入");
+                    addkk=addkk-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addk"><th id="th1">高雄旅遊</th><td id="td1"><input id="inputnumberk" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">3900</td><td id="td1">3900</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("inputnumberk").addEventListener("click",input);
+                    document.getElementById("message").innerHTML=sums;
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumberk").value;
+                        const add = document.getElementById("addk");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addkk=addkk-1;
+                        sums=0;
+                        const addk = document.getElementById("addk")
+                        addk.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("addk");
+                        add.remove();
+                        alert("刪除成功");
+                        addkk=addkk-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addll=0;
+            function addpingtung(){
+                addll=addll+1;
+                if (addll>=2){
+                    alert("重複加入");
+                    addll=addll-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addl"><th id="th1">屏東旅遊</th><td id="td1"><input id="inputnumberl" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">5300</td><td id="td1">5300</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("inputnumberl").addEventListener("click",input);
+                    document.getElementById("message").innerHTML=sums;
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumberl").value;
+                        const add = document.getElementById("addl");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addll=addll-1;
+                        sums=0;
+                        const addl = document.getElementById("addl")
+                        addl.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("addl");
+                        add.remove();
+                        alert("刪除成功");
+                        addll=addll-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addmm=0;
+            function addhualien(){
+                addmm=addmm+1;
+                if (addmm>=2){
+                    alert("重複加入");
+                    addmm=addmm-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addm"><th id="th1">花蓮旅遊</th><td id="td1"><input id="inputnumberm" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">4500</td><td id="td1">4500</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("inputnumberm").addEventListener("click",input);
+                    document.getElementById("message").innerHTML=sums;
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumberm").value;
+                        const add = document.getElementById("addm");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addmm=addmm-1;
+                        sums=0;
+                        const addm = document.getElementById("addm")
+                        addm.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("addm");
+                        add.remove();
+                        alert("刪除成功");
+                        addmm=addmm-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addnn=0;
+            function addtaitung(){
+                addnn=addnn+1;
+                if (addnn>=2){
+                    alert("重複加入");
+                    addnn=addnn-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addn"><th id="th1">台東旅遊</th><td id="td1"><input id="inputnumbern" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">4800</td><td id="td1">4800</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("inputnumbern").addEventListener("click",input);
+                    document.getElementById("message").innerHTML=sums;
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumbern").value;
+                        const add = document.getElementById("addn");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addnn=addnn-1;
+                        sums=0;
+                        const addn = document.getElementById("addn")
+                        addn.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("addn");
+                        add.remove();
+                        alert("刪除成功");
+                        addnn=addnn-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addoo=0;
+            function addkinmen(){
+                addoo=addoo+1;
+                if (addoo>=2){
+                    alert("重複加入");
+                    addoo=addoo-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addo"><th id="th1">金門旅遊</th><td id="td1"><input id="inputnumbero" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">6500</td><td id="td1">6500</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("inputnumbero").addEventListener("click",input);
+                    document.getElementById("message").innerHTML=sums;
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumbero").value;
+                        const add = document.getElementById("addo");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addoo=addoo-1;
+                        sums=0;
+                        const addo = document.getElementById("addo")
+                        addo.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("addo");
+                        add.remove();
+                        alert("刪除成功");
+                        addoo=addoo-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addpp=0;
+            function addmatsu(){
+                addpp=addpp+1;
+                if (addpp>=2){
+                    alert("重複加入");
+                    addpp=addpp-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addp"><th id="th1">馬祖旅遊</th><td id="td1"><input id="inputnumberp" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">6500</td><td id="td1">6500</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("inputnumberp").addEventListener("click",input);
+                    document.getElementById("message").innerHTML=sums;
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumberp").value;
+                        const add = document.getElementById("addp");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addpp=addpp-1;
+                        sums=0;
+                        const addp = document.getElementById("addp")
+                        addp.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("addp");
+                        add.remove();
+                        alert("刪除成功");
+                        addpp=addpp-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+                    };
+                };
+            };
+            let addqq=0;
+            function addpenghu(){
+                addqq=addqq+1;
+                if (addqq>=2){
+                    alert("重複加入");
+                    addqq=addqq-1;
+                    return false;   
+                }
+                else{
+                    alert("加入成功");
+                    sums=sums+1;
+                    const newtable = document.getElementById("tr1");
+                    let newtr = '<tr id="addq"><th id="th1">澎湖旅遊</th><td id="td1"><input id="inputnumberq" type="number" require value="1" step="1" min="1" max="100"></td><td id="td1">5500</td><td id="td1">5500</td><td id="tddd1"><button type="button" id="deletebutton"><img id="garbage" src="garbage.jpg" alt="垃圾桶"></img></button></td></tr>';
+                    newtable.insertAdjacentHTML("afterend",newtr);
+                    document.getElementById("inputnumberq").addEventListener("click",input);
+                    document.getElementById("message").innerHTML=sums;
+                    function input(){
+                        const inputnumber = document.getElementById("inputnumberq").value;
+                        const add = document.getElementById("addq");
+                        const td1 = add.getElementsByTagName("td")[1];
+                        const price = Number(td1.textContent);           
+                        const td2 = add.getElementsByTagName("td")[2];
+                        td2.innerHTML=inputnumber*price;
+                    };
+                    document.getElementById("cashtotal").addEventListener("click",cashtotal);
+                    function cashtotal(){
+                        addqq=addqq-1;
+                        sums=0;
+                        const addq = document.getElementById("addq")
+                        addq.remove();
+                        let no = document.getElementById("nothing");
+                        let add = document.getElementById("addcart");
+                        let total = document.getElementById("totalcart");
+                        let messages = document.getElementById("message");
+                        let cashtotal = document.getElementById("cashtotal");
+                        cashtotal.style.display="none";
+                        no.style.display="block";
+                        add.style.display="none";
+                        total.style.display="none";
+                        messages.style.display="none";
+                    };
+                    document.getElementById("deletebutton").addEventListener("click",deletee);
+                    function deletee(){
+                        const add = document.getElementById("addq");
+                        add.remove();
+                        alert("刪除成功");
+                        addqq=addqq-1;
+                        sums=sums-1;
+                        document.getElementById("message").innerHTML=sums;
+                        if (sums==0){
+                            let no = document.getElementById("nothing");
+                            let add = document.getElementById("addcart");
+                            let total = document.getElementById("totalcart");
+                            let messages = document.getElementById("message");
+                            let cashtotal = document.getElementById("cashtotal");
+                            cashtotal.style.display="none";
+                            no.style.display="block";
+                            add.style.display="none";
+                            total.style.display="none";
+                            messages.style.display="none";
+                        };
+
+                    };
+                };
+            };
+            function deletebutton(){
+                let cancelbutton =document.getElementById("deletebutton")
+                
+            };
+            
+            
+            const myModal = document.getElementById('myModal')
+            const myInput = document.getElementById('myInput')
+            myModal.addEventListener('shown.bs.modal', () => {
+            myInput.focus()
+            });
+            
+        </script>
+        <style>
+            .titleh1{display: flex;
+                     align-items: center;
+                     justify-content: center;
+                     padding-top: 20px;
+                     }
+            body{background-image:url("https://bpic.588ku.com/back_origin_min_pic/19/04/12/a781c9abb7ccc614ef5024fd70b9ce6e.jpg!/fw/750/quality/99/unsharp/true/compress/true");
+                 background-size: cover;
+                 font-family:微軟正黑體;
+                 font-weight: bolder;}
+            #table1{margin-left: auto;
+                  margin-right: auto;
+                  font-size: 18px;
+                  text-align: center;
+                  border-bottom: 1px solid rgb(12, 12, 12);
+                  }
+            #th1{width: 180px;
+               font-weight: bolder;
+               height: 20px;
+               padding: 10px;
+               }     
+            #td1{width: 140px;
+               height: 20px;
+               padding: 10px;
+               }
+            #inputnumbera{border:none;
+                         text-align: right;
+            }
+            #inputnumberb{border:none;
+                         text-align: right;
+            }
+            #inputnumberc{border:none;
+                         text-align: right;
+            }
+            #inputnumberd{border:none;
+                         text-align: right;
+            }
+            #inputnumbere{border:none;
+                         text-align: right;
+            }
+            #inputnumberf{border:none;
+                         text-align: right;
+            }
+            #inputnumberg{border:none;
+                         text-align: right;
+            }
+            #inputnumberh{border:none;
+                         text-align: right;
+            }
+            #inputnumberi{border:none;
+                         text-align: right;
+            }
+            #inputnumberj{border:none;
+                         text-align: right;
+            }
+            #inputnumberk{border:none;
+                         text-align: right;
+            }
+            #inputnumberl{border:none;
+                         text-align: right;
+            }
+            #inputnumberm{border:none;
+                         text-align: right;
+            }
+            #inputnumbern{border:none;
+                         text-align: right;
+            }
+            #inputnumbero{border:none;
+                         text-align: right;
+            }
+            #inputnumberp{border:none;
+                         text-align: right;
+            }
+            #inputnumberq{border:none;
+                         text-align: right;
+            }
+            #tdd1{width: 30px;
+               height: 30px;
+               }
+            #deletebutton{
+                    width: 40px;
+                    height: 40px;
+                    border-color:transparent;
+                    border: none;
+                    background-color: transparent;
+                    padding: 1px;
+               }
+            #garbage{
+                height: 70%;
+                width: 70%;
+                position: relative;
+                top: 1px;
+                bottom:1px;
+            }
+            .table2{margin-left: auto;
+                  margin-right: auto;
+                  font-size: 28px;
+                  text-align: center;
+                  }
+            .th2{width: 200px;
+               font-weight: bolder;
+               height: 30px;
+               padding: 5px;
+               }     
+            .td2{width: 200px;
+                font-weight: bolder;
+               height: 30px;
+               padding: 5px;
+               }         
+            h1{margin-left: 10px;}
+            .nav-link:hover{font-size: 20px;
+                            font-family:微軟正黑體;
+                            font-weight: bolder;
+                            padding: 10px;
+                            border:1px solid rgb(4, 51, 4);
+                            background-color: rgb(28, 116, 28);
+                            cursor: pointer;}
+
+            .div1{border: 2px solid;
+                  border-top-left-radius: 25px;
+                  border-top-right-radius: 25px;
+                  margin-right: 20px;
+                  margin-left: 10px;
+                  background-color:white; 
+                 }
+            .div2{overflow:hidden;
+                  border-top-left-radius: 25px;
+                  border-top-right-radius: 25px;
+                  opacity: 0.8;
+                 }
+            .div3{text-align: center;
+                  margin-top: 8px;
+                  margin-bottom: 8px;
+                  font-size: 22px;}
+            .div4{margin-bottom: 10px;
+                  justify-content: center;
+                  display: flex;}
+            .img{height:300px;
+                 width:250px;
+                 border-top-left-radius: 25px;
+                 border-top-right-radius: 25px;
+                }
+            .img:hover{transform: scale(1.2,1.2);  
+                      }
+            .div3:hover{text-decoration: underline;
+                      }
+        </style>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+            
+    </head>
+    <body>
+        <header>
+          <div style="background-color: #95f083">
+            <h1 class="titleh1">歡迎大家出門探索台灣各個角落</h1>
+            <hr>
+            <nav class="navbar navbar-expand-lg" >
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link" href="travel.html">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#north">北部</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#medium">中部</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#south">南部</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#east">東部</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#island">離島</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <button type="button" class="btn btn-link position-relative" style="padding:0.5px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="dark" class="bi bi-cart" viewBox="0 0 16 16" style="padding: 1px;">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/> 
+                                </svg>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="message" style="display: none;">1
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </button>
+                        </a>
+
+                          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div role="document" class="modal-dialog modal-dialog-scrollable">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-3 fw-bolder" id="staticBackdropLabel">購物車內容</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="text-center h6 mt-4 text-secondary" id="nothing">
+                                        目前尚未選購商品唷！
+                                    </div>
+                                    <div style="display: none;" id="addcart">
+                                        <table id="table1">
+                                            <tr id="tr1">
+                                                <th id="th1">商品名稱</th>
+                                                <td id="td1">數量</td>
+                                                <td id="td1">單價</td>
+                                                <td id="td1">總價</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                <div class="modal-footer">
+                                    <table class="table2" id="totalcart" style="display: none;">
+                                        <tr>
+                                            <th class="th2" onclick="totalshopcart()">總計</th>
+                                            <td class="td2">0</td>
+                                        </tr>
+                                    </table>
+                                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">關閉</button>
+                                    <button type="button" class="btn btn-success" style="display: none;" id="cashtotal" onclick="cachestotal()">結帳</button>
+                                    
+                                    
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </li>
+                      
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            </div>
+        </header>
+        <main>
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="日月潭.jpg" class="d-block w-100" alt="日月潭">
+                </div>
+                <div class="carousel-item">
+                  <img src="101煙火.jpg" class="d-block w-100" alt="放煙火中的101">
+                </div>
+                <div class="carousel-item">
+                  <img src="宜蘭明池.jpg" class="d-block w-100" alt="宜蘭明池">
+                </div>
+                <div class="carousel-item">
+                    <img src="田野風景.jpg" class="d-block w-100" alt="田野風景">
+                </div>
+                <div class="carousel-item">
+                    <img src="花蓮縱谷普悠瑪.jpg" class="d-block w-100" alt="花東縱谷普悠瑪">
+                </div>
+              </div>
+              <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon position-absolute top-50 start-0 translate-middle-y" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon position-absolute top-50 end-0 translate-middle-y" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+        </main>
+        <br>
+        
+        <h1 id="north">北部</h1>
+        <div style="display:flex;">
+            <div class="div1">
+                <div class="div2"><img class="img"  src="台北風景.webp" alt="台北101"></div>
+                <div class="div3"><a href="taipel.html" target="_blank" class="text-dark text-decoration-none">台北旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addtaipel()">加入購物車</div>
+                    <div><a href="taipel.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="div2"><img class="img"  src="桃園風景.jpg" alt="桃園石門水庫"></div>
+                <div class="div3"><a href="taoyuan.html" target="_blank" class="text-dark text-decoration-none">桃園旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addtaoyuan()">加入購物車</div>
+                    <div><a href="taoyuan.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="div2"><img class="img"  src="新竹風景.jpg" alt="新竹城隍廟"></div>
+                <div class="div3"><a href="hsinchu.html" target="_blank" class="text-dark text-decoration-none">新竹旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addhsinchu()">加入購物車</div>
+                    <div><a href="hsinchu.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="div2"><img class="img"  src="宜蘭風景.jpg" alt="蘭陽博物館"></div>
+                <div class="div3"><a href="yilan.html" target="_blank" class="text-dark text-decoration-none">宜蘭旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addyilan()">加入購物車</div>
+                    <div><a href="yilan.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h1 id="medium">中部</h1>
+        <div style="display:flex;">
+            <div class="div1">
+                <div class="div2"><img class="img" src="苗栗風景.jpg" alt="苗栗龍騰斷橋"></div>
+                <div class="div3"><a href="miaoli.html" target="_blank" class="text-dark text-decoration-none">苗栗旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addmiaoli()">加入購物車</div>
+                    <div><a href="miaoli.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="div2"><img class="img" src="台中風景.jpg" alt="台中高美濕地"></div>
+                <div class="div3"><a href="taichung.html" target="_blank" class="text-dark text-decoration-none">台中旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addtaichung()">加入購物車</div>
+                    <div><a href="taichung.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="div2"><img class="img" src="彰化風景.jpg" alt="彰化八卦山"></div>
+                <div class="div3"><a href="changhua.html" target="_blank" class="text-dark text-decoration-none">彰化旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addchanghua()">加入購物車</div>
+                    <div><a href="changhua.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="div2"><img class="img" src="雲林風景.jpg" alt="雲林西螺大橋"></div>
+                <div class="div3"><a href="yunlin.html" target="_blank" class="text-dark text-decoration-none">雲林旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addyunlin()">加入購物車</div>
+                    <div><a href="yunlin.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h1 id="south">南部</h1>
+        <div style="display:flex;">
+            <div class="div1">
+            <div class="div2"><img class="img" src="嘉義風景.jpg" alt="嘉義阿里山小火車"></div>
+            <div class="div3"><a href="chiayi.html" target="_blank" class="text-dark text-decoration-none">嘉義旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addchiayi()">加入購物車</div>
+                    <div><a href="chiayi.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="div2"><img class="img" src="台南風景.jpg" alt="台南赤崁樓"></div>
+                <div class="div3"><a href="tainan.html" target="_blank" class="text-dark text-decoration-none">台南旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addtainan()">加入購物車</div>
+                    <div><a href="tainan.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="div2"><img class="img" src="高雄風景.jpg" alt="高雄85大樓"></div>
+                <div class="div3"><a href="kaohsiung.html" target="_blank" class="text-dark text-decoration-none">高雄旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addkaohsiung()">加入購物車</div>
+                    <div><a href="kaohsiung.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="div2"><img class="img" src="屏東風景.webp" alt="屏東小琉球"></div>
+                <div class="div3"><a href="pingtung.html" target="_blank" class="text-dark text-decoration-none">屏東旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addpingtung()">加入購物車</div>
+                    <div><a href="pingtung.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h1 id="east">東部</h1>
+        <div style="display:flex;">
+            <div class="div1">
+                <div class="div2"><img class="img" src="花蓮風景.jpg" alt="花蓮太魯閣"></div>
+                <div class="div3"><a href="hualien.html" target="_blank" class="text-dark text-decoration-none">花蓮旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addhualien()">加入購物車</div>
+                    <div><a href="hualien.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="div2"><img class="img" src="台東風景.jpg" alt="台東多良車站"></div>
+                <div class="div3"><a href="taitung.html" target="_blank" class="text-dark text-decoration-none">台東旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addtaitung()">加入購物車</div>
+                    <div><a href="taitung.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h1 id="island">離島</h1>
+        <div style="display:flex;">
+            <div class="div1">
+                <div class="div2"><img class="img" src="金門風景.webp" alt="金門莒光樓"></div>
+                <div class="div3"><a href="kinmen.html" target="_blank" class="text-dark text-decoration-none">金門旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addkinmen()">加入購物車</div>
+                    <div><a href="kinmen.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="div2"><img class="img" src="馬祖風景.jpg" alt="馬祖戰地遺址"></div>
+                <div class="div3"><a href="matsu.html" target="_blank" class="text-dark text-decoration-none">馬祖旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addmatsu()">加入購物車</div>
+                    <div><a href="matsu.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+            <div class="div1">
+                <div class="div2"><img class="img" src="澎湖風景.jpg" alt="澎湖柱狀玄武岩"></div>
+                <div class="div3"><a href="penghu.html" target="_blank" class="text-dark text-decoration-none">澎湖旅行</a></div>
+                <div class="div4">
+                    <div type="button" class="btn btn-success mx-2" onclick="shopcart();addpenghu()">加入購物車</div>
+                    <div><a href="penghu.html" target="_blank" class="btn btn-success">查看詳情</a></div>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        <footer class="bg-success bg-opacity-75 py-4 pt-3">
+            <div class="container d-flex justify-content-center">
+                <div class="mx-2 text-dark fw-bolder">Copyright 2022 TRAVEL TAIWN</div>
+                <div>
+                    <div id="liveAlertPlaceholder" data-toggle="tooltip" data-placement="top" title="請按讚">
+                        <svg onclick="like()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
+                            <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
+                        </svg>
+                        
+                    </div>
+                </div>
+                <div class="mx-2 text-dark fw-bold">按讚人數</div>
+                <div class="text-dark fw-bold" id="likenumber">0</div>
+            </div>
+            
+        </footer>
+    </body>
+</html>
